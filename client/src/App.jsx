@@ -46,13 +46,10 @@ function App() {
     }
 
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/tickets",
-        {
-          method: "POST",
-          body: data,
-        }
-      );
+      const response = await fetch("/api/tickets", {
+        method: "POST",
+        body: data,
+      });
 
       const result = await response.json();
 
@@ -63,9 +60,7 @@ function App() {
       setTicketId(result.ticketId);
       setSubmitted(true);
     } catch (error) {
-      setError(
-        error.message || "Something went wrong. Please try again."
-      );
+      setError(error.message || "Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -94,17 +89,14 @@ function App() {
           <h1>Request Submitted</h1>
 
           <p>
-            Your support request has been received by the
-            System Support Team.
+            Your support request has been received by the System Support Team.
           </p>
 
           <div className="ticket-id">
             Ticket ID: <strong>{ticketId}</strong>
           </div>
 
-          <button onClick={resetForm}>
-            Submit Another Request
-          </button>
+          <button onClick={resetForm}>Submit Another Request</button>
         </section>
       </main>
     );
@@ -119,8 +111,7 @@ function App() {
           <h1>System Support</h1>
 
           <p className="subtitle">
-            Submit a request for assistance with your Sphere
-            account.
+            Submit a request for assistance with your Sphere account.
           </p>
         </header>
 
@@ -168,9 +159,7 @@ function App() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="description">
-              Issue Description
-            </label>
+            <label htmlFor="description">Issue Description</label>
 
             <textarea
               id="description"
@@ -184,9 +173,7 @@ function App() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="screenshot">
-              Screenshot / File
-            </label>
+            <label htmlFor="screenshot">Screenshot / File</label>
 
             <input
               id="screenshot"
@@ -198,16 +185,10 @@ function App() {
             <small>Maximum file size: 5MB</small>
           </div>
 
-          {error && (
-            <div className="error">
-              {error}
-            </div>
-          )}
+          {error && <div className="error">{error}</div>}
 
           <button type="submit" disabled={loading}>
-            {loading
-              ? "Submitting..."
-              : "Submit Support Request"}
+            {loading ? "Submitting..." : "Submit Support Request"}
           </button>
         </form>
       </section>
